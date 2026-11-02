@@ -1,0 +1,57 @@
+name: Testes automatizados - TCC EBAC QE
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Subir a loja EBAC (Docker)
+        run: |
+          docker network create --attachable ebac-network
+          docker run -d --name wp_db -p 3306:3306 --network ebac-network ernestosbarbosa/lojaebacdb:latest
+          docker run -d --name wp -p 80:80 --network ebac-network ernestosbarbosa/lojaebac:latest
+
+      - name: Aguardar a loja ficar disponível
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:80/ > /dev/null; then echo "Loja no ar"; break; fi
+            echo "Aguardando a loja... ($i)"; sleep 10
+          done
+
+      - name: Testes de API
+        working-directory: API
+        run: |
+          npm ci || npm install
+          npm test
+        env:
+          API_BASE_URL: http://localhost
+
+      - name: Testes de UI
+        working-directory: UI
+        run: |
+          npm ci || npm install
+          npm test
+        env:
+          UI_BASE_URL: http://localhost
+
+      - name: Publicar relatórios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios
+          path: |
+            API/report
+            UI/cypress/reports

@@ -1,0 +1,4 @@
+{
+  "valido": { "usuario": "user1_ebac", "senha": "psw!ebac@test" },
+  "senhaInvalida": { "usuario": "user1_ebac", "senha": "senhaErrada123" }
+}

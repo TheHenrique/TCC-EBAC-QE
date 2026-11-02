@@ -1,0 +1,15 @@
+{
+  "name": "tcc-ebac-qe-api",
+  "version": "1.0.0",
+  "description": "Testes de API (cupons) da EBAC Shop com Supertest",
+  "scripts": {
+    "test": "jest"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "jest-html-reporters": "^3.1.7",
+    "joi": "^17.13.3",
+    "supertest": "^7.1.1"
+  }
+}
