@@ -4,9 +4,14 @@ class ProdutoPage {
     cy.visit(`/product/${slug}/`)
   }
 
-  // Seleciona a variação (swatch) pelo valor, ex.: tamanho "M", cor "White"
-  selecionarVariacao(valor) {
-    cy.get(`[data-value="${valor}"]`).first().click()
+  // Seleciona tamanho e cor pelos campos de variação do WooCommerce.
+  // Usar os <select> (mesmo escondidos pelo tema) é mais estável que clicar nos swatches.
+  selecionarTamanho(valor) {
+    cy.get('.variations select').eq(0).select(valor, { force: true })
+  }
+
+  selecionarCor(valor) {
+    cy.get('.variations select').eq(1).select(valor, { force: true })
   }
 
   definirQuantidade(qtd) {
@@ -14,7 +19,8 @@ class ProdutoPage {
   }
 
   adicionarAoCarrinho() {
-    cy.get('button.single_add_to_cart_button').click()
+    // Espera o botão habilitar (variação válida escolhida) antes de clicar
+    cy.get('button.single_add_to_cart_button').should('not.have.class', 'disabled').click()
   }
 }
 

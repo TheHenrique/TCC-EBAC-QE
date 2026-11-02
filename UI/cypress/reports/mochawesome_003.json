@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-11-02T21:19:20.663Z",
+    "end": "2026-11-02T21:19:24.916Z",
+    "duration": 4253,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dc932427-4979-4455-bbe1-e6727611c1c7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.js",
+      "file": "cypress\\e2e\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c309d398-a64f-4aa3-92aa-f71265938d31",
+          "title": "US-0002 - Login na plataforma",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve fazer login com usuário ativo e senha válidos",
+              "fullTitle": "US-0002 - Login na plataforma Deve fazer login com usuário ativo e senha válidos",
+              "timedOut": null,
+              "duration": 2816,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('usuario').then(dados => {\n  _login.default.login(dados.valido.usuario, dados.valido.senha);\n  // Logado: aparece o menu da conta (classe padrão do WooCommerce)\n  cy.get('.woocommerce-MyAccount-navigation').should('be.visible');\n});",
+              "err": {},
+              "uuid": "fc89c530-ee20-4f67-99e8-6c5bd51adb57",
+              "parentUUID": "c309d398-a64f-4aa3-92aa-f71265938d31",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro com senha inválida",
+              "fullTitle": "US-0002 - Login na plataforma Deve exibir mensagem de erro com senha inválida",
+              "timedOut": null,
+              "duration": 1353,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('usuario').then(dados => {\n  _login.default.login(dados.senhaInvalida.usuario, dados.senhaInvalida.senha);\n  cy.get('.woocommerce-error').should('be.visible');\n});",
+              "err": {},
+              "uuid": "13bcd7b5-bbee-44e3-b4aa-47c66272686e",
+              "parentUUID": "c309d398-a64f-4aa3-92aa-f71265938d31",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fc89c530-ee20-4f67-99e8-6c5bd51adb57",
+            "13bcd7b5-bbee-44e3-b4aa-47c66272686e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4169,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

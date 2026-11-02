@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-11-02T21:31:44.938Z",
+    "end": "2026-11-02T21:31:50.969Z",
+    "duration": 6031,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "12aa6df9-9c0e-4691-a1fd-fcdd4a505693",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2ad80a7c-b344-4fd2-b131-bb27e959c3a0",
+          "title": "US-0001 - Adicionar item ao carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar um produto ao carrinho",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Deve adicionar um produto ao carrinho",
+              "timedOut": null,
+              "duration": 3747,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(2);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('.woocommerce-cart-form .cart_item', {\n  timeout: 15000\n}).should('have.length.at.least', 1);",
+              "err": {},
+              "uuid": "8fdf02b3-bdd8-4a57-bba6-aa94df277829",
+              "parentUUID": "2ad80a7c-b344-4fd2-b131-bb27e959c3a0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve permitir adicionar 10 itens do mesmo produto (valor limite)",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Deve permitir adicionar 10 itens do mesmo produto (valor limite)",
+              "timedOut": null,
+              "duration": 2184,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(10);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('.woocommerce-cart-form .cart_item input.qty', {\n  timeout: 15000\n}).first().should('have.value', '10');",
+              "err": {},
+              "uuid": "c9883b6b-db94-48f1-9c5f-18a1c65229c9",
+              "parentUUID": "2ad80a7c-b344-4fd2-b131-bb27e959c3a0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8fdf02b3-bdd8-4a57-bba6-aa94df277829",
+            "c9883b6b-db94-48f1-9c5f-18a1c65229c9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5931,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-11-02T21:21:40.547Z",
+    "end": "2026-11-02T21:21:47.287Z",
+    "duration": 6740,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a92351de-98fa-4f97-b0dd-cc5a49ac135e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "38ebc455-2391-40f7-a29a-03381fb2bc93",
+          "title": "US-0001 - Adicionar item ao carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar um produto ao carrinho",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Deve adicionar um produto ao carrinho",
+              "timedOut": null,
+              "duration": 4002,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(2);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('.woocommerce-cart-form .cart_item', {\n  timeout: 15000\n}).should('have.length.at.least', 1);",
+              "err": {},
+              "uuid": "3988d184-8366-4ef3-aa49-de34508cedc9",
+              "parentUUID": "38ebc455-2391-40f7-a29a-03381fb2bc93",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Não deve permitir adicionar mais de 10 itens do mesmo produto",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Não deve permitir adicionar mais de 10 itens do mesmo produto",
+              "timedOut": null,
+              "duration": 2566,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(11);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('body').then($body => {\n  const quantidades = [...$body.find('.cart_item input.qty')].map(i => Number(i.value));\n  quantidades.forEach(q => expect(q).to.be.at.most(10));\n});",
+              "err": {
+                "message": "AssertionError: expected 11 to be at most 10",
+                "estack": "AssertionError: expected 11 to be at most 10\n    at eval (webpack://tcc-ebac-qe-ui/./cypress/e2e/carrinho.cy.js:26:52)\nat Array.forEach (<anonymous>)\n    at Context.eval (webpack://tcc-ebac-qe-ui/./cypress/e2e/carrinho.cy.js:26:18)\n    at getRet (http://localhost/__cypress/runner/cypress_runner.js:121394:20)\n    at tryCatcher (http://localhost/__cypress/runner/cypress_runner.js:1780:23)\n    at Promise.attempt.Promise.try (http://localhost/__cypress/runner/cypress_runner.js:4288:29)",
+                "diff": "- 11\n+ 10\n"
+              },
+              "uuid": "f7ff191e-e014-4654-978c-cc947da5fed8",
+              "parentUUID": "38ebc455-2391-40f7-a29a-03381fb2bc93",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3988d184-8366-4ef3-aa49-de34508cedc9"
+          ],
+          "failures": [
+            "f7ff191e-e014-4654-978c-cc947da5fed8"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6568,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
