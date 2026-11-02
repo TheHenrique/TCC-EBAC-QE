@@ -1,11 +1,12 @@
-// Page Object do produto e carrinho (WooCommerce).
+// Page Object do produto e carrinho (WooCommerce com produtos variáveis).
 class ProdutoPage {
-  acessarLoja() {
-    cy.visit('/loja/')
+  acessarProduto(slug = 'ingrid-running-jacket') {
+    cy.visit(`/product/${slug}/`)
   }
 
-  abrirPrimeiroProduto() {
-    cy.get('ul.products li.product a.woocommerce-LoopProduct-link').first().click()
+  // Seleciona a variação (swatch) pelo valor, ex.: tamanho "M", cor "White"
+  selecionarVariacao(valor) {
+    cy.get(`[data-value="${valor}"]`).first().click()
   }
 
   definirQuantidade(qtd) {
@@ -13,7 +14,7 @@ class ProdutoPage {
   }
 
   adicionarAoCarrinho() {
-    cy.get('button[name="add-to-cart"], button.single_add_to_cart_button').click()
+    cy.get('button.single_add_to_cart_button').click()
   }
 }
 

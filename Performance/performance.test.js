@@ -21,7 +21,7 @@ export const options = {
 
 export default function () {
   // Caso 1: carregar o catálogo de produtos (página da loja)
-  const loja = http.get(`${BASE_URL}/loja/`)
+  const loja = http.get(`${BASE_URL}/produtos/`)
   check(loja, { 'catálogo responde 200': (r) => r.status === 200 })
 
   // Caso 2: abrir a página de login (Minha conta)

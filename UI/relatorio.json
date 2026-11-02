@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2026-11-02T20:49:40.822Z",
+    "end": "2026-11-02T20:49:52.252Z",
+    "duration": 11430
+  },
+  "results": [
+    {
+      "uuid": "ca38a9b8-9387-4d9f-ac34-c086677be9f4",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.js",
+      "file": "cypress\\e2e\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8d2b767e-d71e-45af-a76b-d4f5e96ce2ee",
+          "title": "US-0002 - Login na plataforma",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve fazer login com usuário ativo e senha válidos",
+              "fullTitle": "US-0002 - Login na plataforma Deve fazer login com usuário ativo e senha válidos",
+              "timedOut": null,
+              "duration": 3188,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('usuario').then(dados => {\n  _login.default.login(dados.valido.usuario, dados.valido.senha);\n  // Logado: aparece o menu da conta (classe padrão do WooCommerce)\n  cy.get('.woocommerce-MyAccount-navigation').should('be.visible');\n});",
+              "err": {},
+              "uuid": "5749c0fd-42b4-4fa1-a7cc-2fef9518a6b1",
+              "parentUUID": "8d2b767e-d71e-45af-a76b-d4f5e96ce2ee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro com senha inválida",
+              "fullTitle": "US-0002 - Login na plataforma Deve exibir mensagem de erro com senha inválida",
+              "timedOut": null,
+              "duration": 1392,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('usuario').then(dados => {\n  _login.default.login(dados.senhaInvalida.usuario, dados.senhaInvalida.senha);\n  cy.get('.woocommerce-error').should('be.visible');\n});",
+              "err": {},
+              "uuid": "6cb0e6f9-4615-46be-9866-aaf0c97408d4",
+              "parentUUID": "8d2b767e-d71e-45af-a76b-d4f5e96ce2ee",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5749c0fd-42b4-4fa1-a7cc-2fef9518a6b1",
+            "6cb0e6f9-4615-46be-9866-aaf0c97408d4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4580,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "547584c9-f1bb-48e3-81bd-c066c7040eb2",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6bd50b0b-2f77-4424-8190-54d3bda4654f",
+          "title": "US-0001 - Adicionar item ao carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar um produto ao carrinho",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Deve adicionar um produto ao carrinho",
+              "timedOut": null,
+              "duration": 3908,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(2);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('.woocommerce-cart-form .cart_item').should('have.length.at.least', 1);",
+              "err": {},
+              "uuid": "2eda0c59-413f-4757-bb4a-9a0237b3e8b7",
+              "parentUUID": "6bd50b0b-2f77-4424-8190-54d3bda4654f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Não deve permitir adicionar mais de 10 itens do mesmo produto",
+              "fullTitle": "US-0001 - Adicionar item ao carrinho Não deve permitir adicionar mais de 10 itens do mesmo produto",
+              "timedOut": null,
+              "duration": 1538,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_produto.default.definirQuantidade(11);\n_produto.default.adicionarAoCarrinho();\ncy.visit('/carrinho/');\ncy.get('body').then($body => {\n  const quantidades = [...$body.find('.cart_item input.qty')].map(i => Number(i.value));\n  quantidades.forEach(q => expect(q).to.be.at.most(10));\n});",
+              "err": {},
+              "uuid": "0f25f72d-83e2-499a-9553-92a2bfa74d5b",
+              "parentUUID": "6bd50b0b-2f77-4424-8190-54d3bda4654f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2eda0c59-413f-4757-bb4a-9a0237b3e8b7",
+            "0f25f72d-83e2-499a-9553-92a2bfa74d5b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5446,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -11,7 +11,8 @@ class LoginPage {
   }
 
   entrar() {
-    cy.get('button[name="login"]').click()
+    // Nesta loja o botão de login é um input de submit (name="login")
+    cy.get('input[name="login"]').click()
   }
 
   login(usuario, senha) {
