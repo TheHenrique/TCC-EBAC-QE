@@ -64,7 +64,10 @@ describe('API de cupons - EBAC Shop', () => {
         description: 'Cupom duplicado'
       })
 
-    expect(resposta.statusCode).toBeGreaterThanOrEqual(400)
+    // Valida o status e o código de erro específicos de duplicidade,
+    // em vez de aceitar qualquer erro (>= 400 aceitaria até um 500 do servidor).
+    expect(resposta.statusCode).toBe(400)
+    expect(resposta.body.code).toBe('woocommerce_rest_coupon_code_already_exists')
   })
 
   // CT-14: não permitir acesso sem autenticação (negativo)

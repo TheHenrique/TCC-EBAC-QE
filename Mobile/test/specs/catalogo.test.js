@@ -1,13 +1,18 @@
 import { expect } from '@wdio/globals'
 import catalogoPage from '../pageobjects/catalogo.page.js'
 
-describe('US-0004 - Catálogo de produtos (Android)', () => {
-  // Caminho feliz: o catálogo carrega e é possível abrir um produto
-  it('Deve exibir a lista de produtos e abrir um produto', async () => {
-    await catalogoPage.aguardarCatalogo()
-    const total = await catalogoPage.listaProdutos.length
-    expect(total).toBeGreaterThan(0)
+// Loja e credenciais da EBAC (use as do curso). Podem ser sobrescritas por variável de ambiente.
+const URL_LOJA = process.env.MOBILE_URL || 'http://lojaebac.ebaconline.art.br/'
+const USUARIO = process.env.MOBILE_USER || 'gerente'
+const SENHA = process.env.MOBILE_PASS || ''
 
+describe('US-0004 - Catálogo de produtos (app EBAC Shop)', () => {
+  // Caminho feliz: autentica na loja, abre o catálogo e abre um produto.
+  it('Deve autenticar na loja e abrir um produto do catálogo', async () => {
+    await catalogoPage.login(URL_LOJA, USUARIO, SENHA)
+    expect(await catalogoPage.lojaExibida()).toBe(true)
+
+    await catalogoPage.abrirCatalogo()
     await catalogoPage.abrirPrimeiroProduto()
     await expect(catalogoPage.tituloProduto).toBeDisplayed()
   })

@@ -47,6 +47,13 @@ jobs:
         env:
           UI_BASE_URL: http://localhost
 
+      - name: Teste de defeito conhecido (CT-02 / DEF-01)
+        working-directory: UI
+        continue-on-error: true
+        run: npm run test:defeito
+        env:
+          UI_BASE_URL: http://localhost
+
       - name: Publicar relatórios
         if: always()
         uses: actions/upload-artifact@v4
@@ -55,3 +62,4 @@ jobs:
           path: |
             API/report
             UI/cypress/reports
+            UI/cypress/screenshots

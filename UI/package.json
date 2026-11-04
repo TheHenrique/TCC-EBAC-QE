@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Testes de UI da EBAC Shop com Cypress",
   "scripts": {
-    "test": "cypress run",
+    "test": "cypress run --spec \"cypress/e2e/carrinho.cy.js,cypress/e2e/login.cy.js\"",
+    "test:defeito": "cypress run --spec \"cypress/e2e/carrinho-defeito.cy.js\"",
     "cy:open": "cypress open"
   },
   "type": "commonjs",

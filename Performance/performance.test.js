@@ -24,10 +24,30 @@ export default function () {
   const loja = http.get(`${BASE_URL}/produtos/`)
   check(loja, { 'catálogo responde 200': (r) => r.status === 200 })
 
-  // Caso 2: abrir a página de login (Minha conta)
+  // Caso 2: autenticar na loja usando a massa de usuários
   const usuario = usuarios[Math.floor(Math.random() * usuarios.length)]
-  const login = http.get(`${BASE_URL}/minha-conta/`)
-  check(login, { 'página de login responde 200': (r) => r.status === 200 })
+
+  // 1) Abre a página de login e extrai o nonce de segurança do WooCommerce
+  const paginaLogin = http.get(`${BASE_URL}/minha-conta/`)
+  check(paginaLogin, { 'página de login responde 200': (r) => r.status === 200 })
+  const nonce = paginaLogin
+    .html()
+    .find('input[name="woocommerce-login-nonce"]')
+    .first()
+    .attr('value')
+
+  // 2) Envia usuário e senha (login real do WooCommerce)
+  const login = http.post(`${BASE_URL}/minha-conta/`, {
+    username: usuario.usuario,
+    password: usuario.senha,
+    'woocommerce-login-nonce': nonce,
+    _wp_http_referer: '/minha-conta/',
+    login: 'Login'
+  })
+  check(login, {
+    'login responde 200': (r) => r.status === 200,
+    'usuário autenticado': (r) => r.body && r.body.includes('customer-logout')
+  })
 
   sleep(1)
 }

@@ -1,1 +1,1 @@
-app/ebac-shop.apk (baixar do repositório da EBAC)
+app/loja-ebac.apk (app do WooCommerce / EBAC Shop - baixar do material da EBAC)

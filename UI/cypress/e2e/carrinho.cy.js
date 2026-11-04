@@ -7,7 +7,7 @@ describe('US-0001 - Adicionar item ao carrinho', () => {
     produtoPage.selecionarCor('White')
   })
 
-  it('Deve adicionar um produto ao carrinho', () => {
+  it('CT-01 - Deve adicionar um produto ao carrinho', () => {
     produtoPage.definirQuantidade(2)
     produtoPage.adicionarAoCarrinho()
     cy.visit('/carrinho/')
@@ -15,7 +15,7 @@ describe('US-0001 - Adicionar item ao carrinho', () => {
       .should('have.length.at.least', 1)
   })
 
-  it('Deve permitir adicionar 10 itens do mesmo produto (valor limite)', () => {
+  it('CT-03 - Deve permitir adicionar 10 itens do mesmo produto (valor limite)', () => {
     produtoPage.definirQuantidade(10)
     produtoPage.adicionarAoCarrinho()
     cy.visit('/carrinho/')
