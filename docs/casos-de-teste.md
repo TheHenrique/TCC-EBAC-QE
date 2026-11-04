@@ -52,7 +52,7 @@ Técnicas aplicadas: partição de equivalência (termo existente x inexistente)
 
 | ID | Tipo | Técnica | Entrada | Resultado esperado |
 |----|------|---------|---------|--------------------|
-| CT-15 **(A)** | Feliz | Partição de equivalência | No app EBAC Shop, autenticar na loja, abrir o catálogo e tocar no primeiro produto | Loja exibida e a página de detalhes do produto é aberta |
+| CT-15 **(A)** | Feliz | Partição de equivalência | No app EBAC Shop (sessão já autenticada), abrir o catálogo e tocar no primeiro produto | Catálogo exibido e a página de detalhes do produto é aberta |
 | CT-16 | Feliz | Partição de equivalência | Buscar "jacket" no campo de busca da loja | Retorna os produtos cujo nome contém "jacket" |
 | CT-17 | Feliz | Partição de equivalência | Acessar a página `/produtos/` | Cada produto exibe nome e preço |
 | CT-18 | Negativo | Partição de equivalência | Buscar por um termo inexistente ("xyzabc123") | Mensagem informando que nenhum produto foi encontrado |
